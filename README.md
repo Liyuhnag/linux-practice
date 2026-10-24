@@ -7,7 +7,7 @@
 ## 快速开始
 
 ```bash
-git clone <仓库地址> linux-practice
+git clone https://github.com/Liyuhnag/linux-practice.git
 cd linux-practice
 ./bin/setup.sh          # 生成所有样本（约 3 秒）
 ```
