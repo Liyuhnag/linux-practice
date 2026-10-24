@@ -75,6 +75,7 @@ for _ in range(2000):
 2026-10-20 09:12:07 [error] connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.1.5, request: "GET /login HTTP/1.1", upstream: "http://127.0.0.1:8080/login"
 2026-10-20 09:15:33 [error] no live upstreams while connecting to upstream, client: 8.8.8.8, request: "GET /api/users HTTP/1.1"
 2026-10-20 09:20:11 [warn] conflicting server name "app.example.com" on 0.0.0.0:80, ignored
+2026-10-20 09:26:40 [error] upstream timeout (110: Connection timed out) while reading response header from upstream, client: 172.16.0.9, request: "GET /api/users HTTP/1.1"
 2026-10-20 09:31:45 [error] upstream timed out (110: Connection timed out) while reading response header from upstream, client: 10.0.0.1, request: "GET /health HTTP/1.1"
 """)
 (base/"long-lines.txt").write_text(("\n".join("x"*300 for _ in range(50))) + "\n")
