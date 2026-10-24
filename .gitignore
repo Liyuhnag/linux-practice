@@ -18,3 +18,16 @@
 
 .DS_Store
 *.swp
+
+# cases 运行时生成
+/cases/01-port-in-use/.stray.pid
+/cases/01-port-in-use/.app.pid
+/cases/02-broken-config/app/config.yml
+/cases/02-broken-config/config/
+/cases/03-cpu-hog/.pid
+/cases/03-cpu-hog/bin/
+/cases/04-bad-gateway/.proxy.pid
+/cases/04-bad-gateway/.upstream.pid
+/cases/04-bad-gateway/proxy.log
+/cases/05-log-stale/.pid
+/cases/05-log-stale/app.log*

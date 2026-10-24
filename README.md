@@ -44,6 +44,28 @@ ls -la
 
 参考答案在 [`SOLUTIONS.md`](SOLUTIONS.md)。
 
+## 真实案例
+
+`cases/` 里有五个可复现的小事故，每个都有工单、注入脚本、清理脚本和答案：
+
+| 案例 | 现象 | 考什么 |
+| :--- | :--- | :--- |
+| 01-port-in-use | 服务报端口被占用 | ss、lsof、kill |
+| 02-broken-config | 配置说找不到 | ls -l、readlink、namei |
+| 03-cpu-hog | CPU 95% | top、ps、/proc |
+| 04-bad-gateway | 接口 502 | curl -v、ss、日志 |
+| 05-log-stale | 日志不更新 | lsof、/proc/pid/fd |
+
+```bash
+cd cases/01-port-in-use
+cat ticket.md        # 先只看工单
+bash inject.sh       # 制造故障
+# 开始排查……
+bash clean.sh        # 收尾
+```
+
+先别翻 `ANSWER.md`。
+
 ## 重置
 
 练坏了不用慌，样本都是生成的：
