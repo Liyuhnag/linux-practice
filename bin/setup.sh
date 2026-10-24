@@ -11,10 +11,17 @@ only="${1:-all}"
 need() { command -v "$1" >/dev/null 2>&1 || { echo "缺少命令：$1" >&2; exit 1; }; }
 need python3
 
+# 清空某个练习目录，但保留 README.md
+clean_dir() {
+  local d="$1"
+  mkdir -p "$d"
+  find "$d" -mindepth 1 -maxdepth 1 ! -name 'README.md' -exec rm -rf {} +
+}
+
 # ---------------------------------------------------------------- 01
 setup_01() {
   local d="01-文件与目录"
-  rm -rf "$d"
+  clean_dir "$d"
   mkdir -p "$d/project/src" "$d/project/docs" "$d/project/tests/deep/nested" "$d/many-files" "$d/empty-dir"
 
   printf 'def main():\n    print("hello")\n' > "$d/project/src/main.py"
@@ -46,7 +53,7 @@ setup_01() {
 # ---------------------------------------------------------------- 02
 setup_02() {
   local d="02-查看与文本"
-  rm -rf "$d"
+  clean_dir "$d"
   mkdir -p "$d/logs"
   python3 - "$d" <<'PY'
 import random, datetime, pathlib, sys
@@ -96,7 +103,7 @@ PY
 # ---------------------------------------------------------------- 03
 setup_03() {
   local d="03-进程与系统"
-  rm -rf "$d"
+  clean_dir "$d"
   mkdir -p "$d/scripts"
   cat > "$d/scripts/busy.sh" <<'SH'
 #!/usr/bin/env bash
@@ -131,7 +138,7 @@ PY
 # ---------------------------------------------------------------- 04
 setup_04() {
   local d="04-磁盘与IO"
-  rm -rf "$d"
+  clean_dir "$d"
   mkdir -p "$d/small-files"
   python3 - "$d" <<'PY'
 import pathlib, sys
@@ -152,7 +159,7 @@ setup_05() {
 # ---------------------------------------------------------------- 06
 setup_06() {
   local d="06-权限与用户"
-  rm -rf "$d"
+  clean_dir "$d"
   mkdir -p "$d/restricted" "$d/shared"
   printf 'owner only\n'   > "$d/private.txt";  chmod 600 "$d/private.txt"
   printf 'read all\n'     > "$d/public.txt";   chmod 644 "$d/public.txt"
@@ -166,7 +173,7 @@ setup_06() {
 # ---------------------------------------------------------------- 07
 setup_07() {
   local d="07-服务与定时"
-  rm -rf "$d"
+  clean_dir "$d"
   mkdir -p "$d/systemd" "$d/logs"
   cat > "$d/systemd/practice.service" <<'UNIT'
 [Unit]
@@ -203,7 +210,7 @@ CRON
 # ---------------------------------------------------------------- 08
 setup_08() {
   local d="08-归档与传输"
-  rm -rf "$d"
+  clean_dir "$d"
   mkdir -p "$d/source/sub" "$d/source/empty"
   printf 'a\n' > "$d/source/a.txt"
   printf 'b\n' > "$d/source/b.log"
